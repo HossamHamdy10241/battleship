@@ -13,6 +13,6 @@ import { Ship } from './ship';
 // ship.render()
 
 let game=new Game()
-let handler = new Input()
-let ship = new Ship(game.width/2,game.height/2)
+
+let ship = new Ship(game.width/2,game.height/2,game)
 game.start(ship)
