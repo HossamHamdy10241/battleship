@@ -37,10 +37,17 @@ export class Ship{
       this.speed*=0.95
     }
 
+
     if(this.game.handler.keys.ArrowLeft){
-      this.angel-=0.05
+      if(this.game.handler.keys.ArrowDown){this.angel+=.05}
+      else{this.angel-=0.05}
     }else if(this.game.handler.keys.ArrowRight){
-      this.angel+=0.05
+      if(this.game.handler.keys.ArrowDown){this.angel-=.05}
+      else{
+        this.angel+=0.05
+
+      }
+
     }
 
      this.x+=Math.cos(this.angel)*this.speed  
