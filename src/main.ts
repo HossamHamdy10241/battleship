@@ -13,5 +13,5 @@ import { Ship } from './ship';
 
 let game=new Game()
 
-let ship = new Ship(game.width/2,game.height/2,game)
-game.start(ship)
+// let ship = new Ship(game.width/2,game.height/2,game)
+// game.start(ship)
