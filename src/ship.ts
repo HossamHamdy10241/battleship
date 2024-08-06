@@ -13,34 +13,33 @@ export class Ship{
     this.x=x
     this.y=y
   }
-  render(ctx:CanvasRenderingContext2D){
-    ctx.fillStyle=this.color
-    ctx.save()
-    ctx.translate(this.x,this.y)
-    ctx.rotate(this.angel)
-    ctx.beginPath()
-    ctx.moveTo(0,0)
-    ctx.lineTo(-10,-this.size/2)
-    ctx.lineTo(this.size,0)
-    ctx.lineTo(-10,this.size/2)
-    ctx.closePath()
-    ctx.fill()
-
-    ctx.restore()
+  render(){
+    this.game.ctx.fillStyle=this.color
+    this.game.ctx.save()
+    this.game.ctx.translate(this.x,this.y)
+    this.game.ctx.rotate(this.angel)
+    this.game.ctx.beginPath()
+    this.game.ctx.moveTo(0,0)
+    this.game.ctx.lineTo(-10,-this.size/2)
+    this.game.ctx.lineTo(this.size,0)
+    this.game.ctx.lineTo(-10,this.size/2)
+    this.game.ctx.closePath()
+    this.game.ctx.fill()
+    this.game.ctx.restore()
 
   }
-  update(handler:any){
-    if(handler.keys.ArrowUp && this.speed<this.maxSpeed){
+  update(){
+    if(this.game.handler.keys.ArrowUp && this.speed<this.maxSpeed){
       this.speed+=0.2
-    }else if(handler.keys.ArrowDown && this.speed>-this.maxSpeed){
+    }else if(this.game.handler.keys.ArrowDown && this.speed>-this.maxSpeed){
       this.speed-=0.2
     }else{
       this.speed*=0.95
     }
 
-    if(handler.keys.ArrowLeft){
+    if(this.game.handler.keys.ArrowLeft){
       this.angel-=0.05
-    }else if(handler.keys.ArrowRight){
+    }else if(this.game.handler.keys.ArrowRight){
       this.angel+=0.05
     }
 

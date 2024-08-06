@@ -1,5 +1,4 @@
 import './style.css'
-import { Input } from './input';
 import { Game } from './game';
 import { Ship } from './ship';
 // const canvas = document.querySelector('canvas') as HTMLCanvasElement
