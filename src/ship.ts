@@ -4,35 +4,39 @@ export class Ship {
   y: number;
   angel = 0;
   maxSpeed = 8;
+  ctx:CanvasRenderingContext2D
   game: any;
   speed = 0;
   size: number;
   constructor(
+    game: any,
     size: number = 40,
     color: string = "black",
-    x: number = Math.round(Math.random() * this.game.width),
-    y: number = Math.round(Math.random() * this.game.height),
-    game: any
+    x?: number ,
+    y?:number, 
   ) {
     this.game = game;
     this.size = size;
-    this.x = x;
     this.color = color;
-    this.y = y;
+    x? this.x=x:this.x = Math.round(Math.random()*this.game.width);
+    y? this.y=y:this.y = Math.round(Math.random()*this.game.height);
+    this.ctx=game.ctx
+    // this.y = y;
+    console.log(this.x,this.y);
   }
   render() {
-    this.game.ctx.fillStyle = this.color;
-    this.game.ctx.save();
-    this.game.ctx.translate(this.x, this.y);
-    this.game.ctx.rotate(this.angel);
-    this.game.ctx.beginPath();
-    this.game.ctx.moveTo(0, 0);
-    this.game.ctx.lineTo(-10, -this.size / 2);
-    this.game.ctx.lineTo(this.size, 0);
-    this.game.ctx.lineTo(-10, this.size / 2);
-    this.game.ctx.closePath();
-    this.game.ctx.fill();
-    this.game.ctx.restore();
+    this.ctx.fillStyle = this.color;
+    this.ctx.save();
+    this.ctx.translate(this.x, this.y);
+    this.ctx.rotate(this.angel);
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 0);
+    this.ctx.lineTo(-10, -this.size / 2);
+    this.ctx.lineTo(this.size, 0);
+    this.ctx.lineTo(-10, this.size / 2);
+    this.ctx.closePath();
+    this.ctx.fill();
+    this.ctx.restore();
   }
   update() {
     if (this.game.handler.keys.ArrowUp && this.speed < this.maxSpeed) {
